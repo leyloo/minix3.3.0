@@ -70,6 +70,7 @@ static clock_t realtime = 0;
 static int32_t adjtime_delta = 0;
 
 /*
+sondleyyyyyyyyy
  * The boot processor's timer interrupt handler. In addition to non-boot cpus
  * it keeps real time and notifies the clock task if need be.
  */
