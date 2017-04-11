@@ -306,6 +306,7 @@ int do_nice(message *m_ptr)
 	/* Store old values, in case we need to roll back the changes */
 	old_q     = rmp->priority;
 	old_max_q = rmp->max_priority;
+	old_NumeroTikets = rmp->NumeroTikets;
 
 
 	/* Update the proc entry and reschedule the process */
