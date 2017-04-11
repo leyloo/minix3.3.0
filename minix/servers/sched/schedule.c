@@ -429,21 +429,21 @@ static void balance_queues(minix_timer_t *tp)
  				}
 			}
 			if (old_priority != rmp->priority) {
-+ 				schedule_process(rmp);
-+ 			}
-+ 		}
-+ 	}
-+ 	/*
-+ 	for (proc_nr=0, rmp=schedproc; proc_nr < NR_PROCS; proc_nr++, rmp++) {
-+ 		if ((rmp->flags & IN_USE) && PROCESS_IN_USER_Q(rmp)) {
-+ 			if (USER_Q == rmp->priority)
-+ 				count_17++;
-+ 			else if (MAX_USER_Q == rmp->priority)
-+ 				count_16++;
-+ 		}
-+ 	}
-+ 	printf("in 16: %d; in 17: %d\n", count_16, count_17); 
-+ 	*/
-+ 	/* printf("do_lottery OK? %d lucky=%d\n", flag, lucky); */
-+ 	return nTickets ? flag : OK;
-+ }
+ 				schedule_process(rmp);
+ 			}
+ 		}
+ 	}
+ 	/*
+ 	for (proc_nr=0, rmp=schedproc; proc_nr < NR_PROCS; proc_nr++, rmp++) {
+ 		if ((rmp->flags & IN_USE) && PROCESS_IN_USER_Q(rmp)) {
+ 			if (USER_Q == rmp->priority)
+				count_17++;
+ 			else if (MAX_USER_Q == rmp->priority)
+ 				count_16++;
+ 		}
+ 	}
+ 	printf("in 16: %d; in 17: %d\n", count_16, count_17); 
+ 	*/
+ 	/* printf("do_lottery OK? %d lucky=%d\n", flag, lucky); */
+ 	return nTickets ? flag : OK;
+ }
