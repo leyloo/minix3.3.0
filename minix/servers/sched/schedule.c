@@ -322,6 +322,16 @@ int do_nice(message *m_ptr)
 	return rv;
 }
 
+void init_scheduling(void)
+  {
+   	u64_t r;
+  	balance_timeout = BALANCE_TIMEOUT * sys_hz();
+  	tmr_inittimer(&sched_timer);
+  	sched_set_timer(&sched_timer, balance_timeout, balance_queues, 0);
+ 	read_tsc_64(&r);
+ 	srandom((unsigned)r);
+  }
+
 /*===========================================================================*
  *				schedule_process			     *
  *===========================================================================*/
