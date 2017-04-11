@@ -4,7 +4,7 @@
  *   do_noquantum:        Called on behalf of process' that run out of quantum
  *   do_start_scheduling  Request to start scheduling a proc
  *   do_stop_scheduling   Request to stop scheduling a proc
- *   do_nice		  Request to change the nice level on a proc
+ *   do_nice		  Request to change the level on a proc
  *   init_scheduling      Called from main.c to set up/prepare scheduling
  */
 #include "sched.h"
@@ -253,7 +253,9 @@ int do_start_scheduling(message *m_ptr)
 
 /*===========================================================================*
  *				do_nice					     *
- *===========================================================================*/
+ *=======================================
+
+ ====================================*/
 int do_nice(message *m_ptr)
 {
 	struct schedproc *rmp;
