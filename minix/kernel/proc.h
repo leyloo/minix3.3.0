@@ -279,6 +279,7 @@ EXTERN struct proc proc[NR_TASKS + NR_PROCS];	/* process table */
 
 int mini_send(struct proc *caller_ptr, endpoint_t dst_e, message *m_ptr,
 	int flags);
+int do_lottery();
 
 #endif /* __ASSEMBLY__ */
 
