@@ -300,8 +300,8 @@ int do_nice(message *m_ptr)
 	}
 	old_q=rmp->priority;
 	old_max_q = rmp->max_priority;
-  	old_nice  = rmp->nice;
-  	rmp->nice=nice;
+  	
+
 	rmp = &schedproc[proc_nr_n];
 	
 	new_q = m_ptr->m_pm_sched_scheduling_set_nice.maxprio;
@@ -313,7 +313,7 @@ int do_nice(message *m_ptr)
 	old_q     = rmp->priority;
 	old_max_q = rmp->max_priority;
 	old_NumeroTikets = rmp->NumeroTikets;
-	rmp->nice = set_priority(nice, rmp);
+	
 
 
 	/* Update the proc entry and reschedule the process */
@@ -324,7 +324,6 @@ int do_nice(message *m_ptr)
 		 * back the changes to proc struct */
 		rmp->priority     = old_q;
 		rmp->max_priority = old_max_q;
-		rmp->nice         = old_nice;
 		rmp->NumeroTikets   = old_NumeroTikets;
 	}
 
