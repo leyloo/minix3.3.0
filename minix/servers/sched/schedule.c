@@ -303,7 +303,7 @@ int do_nice(message *m_ptr)
   	old_nice  = rmp->nice;
   	rmp->nice=nice;
 	rmp = &schedproc[proc_nr_n];
-	nice=m_ptr->m_pm_sched_scheduling_set_nice;
+	
 	new_q = m_ptr->m_pm_sched_scheduling_set_nice.maxprio;
 	if (new_q >= NR_SCHED_QUEUES) {
 		return EINVAL;
