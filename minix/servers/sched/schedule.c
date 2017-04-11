@@ -429,7 +429,7 @@ static void balance_queues(minix_timer_t *tp)
  				}
 			}
 			if (old_priority != rmp->priority) {
- 				schedule_process(rmp);
+ 				schedule_process(rmp,flags);
  			}
  		}
  	}
