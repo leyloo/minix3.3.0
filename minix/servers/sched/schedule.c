@@ -206,7 +206,7 @@ int do_start_scheduling(message *m_ptr)
 		 * value is local and we assert that the parent endpoint is valid */
 		if ((rv = sched_isokendpt(m_ptr->m_lsys_sched_scheduling_start.parent,
 				&parent_nr_n)) != OK)
-			return rv
+			return rv;
 
 		rmp->priority = schedproc[parent_nr_n].priority;
 		rmp->time_slice = schedproc[parent_nr_n].time_slice;
