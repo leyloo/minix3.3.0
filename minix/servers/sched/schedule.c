@@ -284,8 +284,10 @@ int do_nice(message *m_ptr)
 	struct schedproc *rmp;
 	int rv;
 	int proc_nr_n;
+	int nice;
 	int old_nice, old_NumeroTikets;
 	unsigned new_q, old_q, old_max_q;
+
 
 	/* check who can send you requests */
 	if (!accept_message(m_ptr))
@@ -296,8 +298,12 @@ int do_nice(message *m_ptr)
 		"%d\n", m_ptr->m_pm_sched_scheduling_set_nice.endpoint);
 		return EBADEPT;
 	}
-
+	old_q=rmp->priority;
+	old_max_q = rmp->max_priority;
+  	old_nice  = rmp->nice;
+  	rmp->nice=nice;
 	rmp = &schedproc[proc_nr_n];
+	nice=m_ptr->m_pm_sched_scheduling_set_nice;
 	new_q = m_ptr->m_pm_sched_scheduling_set_nice.maxprio;
 	if (new_q >= NR_SCHED_QUEUES) {
 		return EINVAL;
@@ -307,6 +313,7 @@ int do_nice(message *m_ptr)
 	old_q     = rmp->priority;
 	old_max_q = rmp->max_priority;
 	old_NumeroTikets = rmp->NumeroTikets;
+	rmp->nice = set_priority(nice, rmp);
 
 
 	/* Update the proc entry and reschedule the process */
@@ -317,6 +324,8 @@ int do_nice(message *m_ptr)
 		 * back the changes to proc struct */
 		rmp->priority     = old_q;
 		rmp->max_priority = old_max_q;
+		rmp->nice         = old_nice;
+		rmp->NumeroTikets   = old_NumeroTikets;
 	}
 
 	return rv;
@@ -444,4 +453,18 @@ static void balance_queues(minix_timer_t *tp)
  	}
  	
  	return nTickets ? flag : OK;
+ }
+
+/*===========================================================================*
+  *
+ set_priority				     *
+  *===========================================================================*/
+ int set_priority(int ntickets, struct schedproc* p)
+{
+	int add;
+
+	add = p->ticketsNum + ntickets > 100 ? 100 - p->ticketsNum : ntickets;
+	add = p->ticketsNum + ntickets < 1 ? 1 - p->ticketsNum: add;
+	p->ticketsNum += add;
+	 	return add;
  }
