@@ -406,19 +406,19 @@ static void balance_queues(minix_timer_t *tp)
 	for (proc_nr=0, rmp=schedproc; proc_nr < NR_PROCS; proc_nr++, rmp++) {
 		if ((rmp->flags & IN_USE) && PROCESS_IN_USER_Q(rmp)) {
 			if (USER_Q == rmp->priority) {
-				nTickets += rmp->ticketsNum;
+				nTickets += rmp->NumeroTikets;
 			}
 		}
 	}
 
-	lucky = nTickets ? rand() % nTickets : 0;
+	lucky = nTickets ? random() % nTickets : 0;
 	for (proc_nr=0, rmp=schedproc; proc_nr < NR_PROCS; proc_nr++, rmp++) {
  		if ((rmp->flags & IN_USE) && PROCESS_IN_USER_Q(rmp) &&
  				USER_Q == rmp->priority) {
  			old_priority = rmp->priority;
  			/* rmp->priority = USER_Q; */
  			if (lucky >= 0) {
- 				lucky -= rmp->ticketsNum;
+ 				lucky -= rmp->NumeroTikets;
  				/*
  				   printf("lucky - %d = %d\n", rmp->ticketsNum, lucky);
  				 */
