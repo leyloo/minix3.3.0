@@ -10,6 +10,8 @@
 #include "sched.h"
 #include "schedproc.h"
 #include <assert.h>
+#include <stdlib.h>
+#include <time.h>
 #include <minix/com.h>
  #include <minix/syslib.h>
 #include <machine/archtypes.h>
