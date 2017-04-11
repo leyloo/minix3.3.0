@@ -300,7 +300,7 @@ int do_nice(message *m_ptr)
 	}
 	old_q=rmp->priority;
 	old_max_q = rmp->max_priority;
-  	
+  	old_nice  = rmp->nice;
 
 	rmp = &schedproc[proc_nr_n];
 	
@@ -313,7 +313,7 @@ int do_nice(message *m_ptr)
 	old_q     = rmp->priority;
 	old_max_q = rmp->max_priority;
 	old_NumeroTikets = rmp->NumeroTikets;
-	
+	rmp->nice = set_priority(nice,rmp);
 
 
 	/* Update the proc entry and reschedule the process */

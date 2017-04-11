@@ -280,7 +280,7 @@ EXTERN struct proc proc[NR_TASKS + NR_PROCS];	/* process table */
 int mini_send(struct proc *caller_ptr, endpoint_t dst_e, message *m_ptr,
 	int flags);
 int do_lottery();
-int set_priority(int ntickets, struct schedproc* p)
+int set_priority(int ntickets, struct schedproc* p);
 
 #endif /* __ASSEMBLY__ */
 
