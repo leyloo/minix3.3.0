@@ -130,6 +130,12 @@ int do_stop_scheduling(message *m_ptr)
 	}
 
 	rmp = &schedproc[proc_nr_n];
+
+	if (PROCESS_IN_USER_Q(rmp)) {
+ 		rmp->priority = USER_Q;
+ 	} else if (rmp->priority < MAX_USER_Q - 1){
+ 		rmp->priority += 1;
+	}
 #ifdef CONFIG_SMP
 	cpu_proc[rmp->cpu]--;
 #endif
