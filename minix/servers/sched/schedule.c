@@ -463,8 +463,8 @@ static void balance_queues(minix_timer_t *tp)
 {
 	int add;
 
-	add = p->ticketsNum + ntickets > 100 ? 100 - p->ticketsNum : ntickets;
-	add = p->ticketsNum + ntickets < 1 ? 1 - p->ticketsNum: add;
-	p->ticketsNum += add;
+	add = p->NumeroTikets + ntickets > 100 ? 100 - p->NumeroTikets : ntickets;
+	add = p->NumeroTikets + ntickets < 1 ? 1 - p->NumeroTikets: add;
+	p->NumeroTikets += add;
 	 	return add;
  }
