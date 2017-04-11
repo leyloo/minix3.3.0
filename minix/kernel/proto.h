@@ -22,6 +22,9 @@ clock_t get_monotonic(void);
 void set_kernel_timer(minix_timer_t *tp, clock_t t, tmr_func_t f);
 void reset_kernel_timer(minix_timer_t *tp);
 void ser_dump_proc(void);
+int MasBillete(int cantidad);
+void do_lottery();
+
 
 void cycles_accounting_init(void);
 /*
