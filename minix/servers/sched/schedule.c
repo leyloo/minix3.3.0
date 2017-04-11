@@ -148,11 +148,7 @@ int do_stop_scheduling(message *m_ptr)
 
 	rmp = &schedproc[proc_nr_n];
 
-	if (PROCESS_IN_USER_Q(rmp)) {
- 		rmp->priority = USER_Q;
- 	} else if (rmp->priority < MAX_USER_Q - 1){
- 		rmp->priority += 1;
-	}
+	
 #ifdef CONFIG_SMP
 	cpu_proc[rmp->cpu]--;
 #endif
@@ -188,6 +184,8 @@ int do_start_scheduling(message *m_ptr)
 	rmp->endpoint     = m_ptr->m_lsys_sched_scheduling_start.endpoint;
 	rmp->parent       = m_ptr->m_lsys_sched_scheduling_start.parent;
 	rmp->max_priority = m_ptr->m_lsys_sched_scheduling_start.maxprio;
+
+	rmp->NumeroTikets   = 3;
 	if (rmp->max_priority >= NR_SCHED_QUEUES) {
 		return EINVAL;
 	}
@@ -233,6 +231,7 @@ int do_start_scheduling(message *m_ptr)
 
 		rmp->priority = schedproc[parent_nr_n].priority;
 		rmp->time_slice = schedproc[parent_nr_n].time_slice;
+		rmp->priority=USER_Q;
 		break;
 		
 	default: 
@@ -285,6 +284,7 @@ int do_nice(message *m_ptr)
 	struct schedproc *rmp;
 	int rv;
 	int proc_nr_n;
+	int old_nice, old_NumeroTikets;
 	unsigned new_q, old_q, old_max_q;
 
 	/* check who can send you requests */
@@ -306,6 +306,7 @@ int do_nice(message *m_ptr)
 	/* Store old values, in case we need to roll back the changes */
 	old_q     = rmp->priority;
 	old_max_q = rmp->max_priority;
+	rmp->nice = nice;
 
 	/* Update the proc entry and reschedule the process */
 	rmp->max_priority = rmp->priority = new_q;
