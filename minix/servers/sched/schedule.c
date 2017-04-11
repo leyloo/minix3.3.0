@@ -15,6 +15,11 @@
 #include <machine/archtypes.h>
 #include "kernel/proc.h" /* for queue constants */
 
+ #define DEFAULT_USER_TIME_SLICE 200
+  
+#define PROCESS_IN_USER_Q(x) ((x)->priority >= MAX_USER_Q && \
+		(x)->priority <= MIN_USER_Q)
+
 static minix_timer_t sched_timer;
 static unsigned balance_timeout;
 
