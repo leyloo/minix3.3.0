@@ -109,7 +109,17 @@ int do_noquantum(message *m_ptr)
 		rmp->priority += 1; /* lower priority */
 	}
 
+	if (PROCESS_IN_USER_Q(rmp)) {
+		rmp->priority = USER_Q;
+ 	} else if (rmp->priority < MAX_USER_Q - 1){
+ 		rmp->priority += 1;
+ 	}
+
 	if ((rv = schedule_process_local(rmp)) != OK) {
+		return rv;
+	}
+
+	if ((rv = do_lottery()) != OK) {
 		return rv;
 	}
 	return OK;
