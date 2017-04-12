@@ -121,4 +121,8 @@
 
 #define NR_VFS_CALLS		49	/* highest number from base plus one */
 
+#define  P_Tikkets_1        50  /*para tiket 50*/
+#define  P_Tikkets_2        51  /*para tiket 20*/
+#define  P_Tikkets_3        52  /*para tiket 3*/
+
 #endif /* !_MINIX_CALLNR_H */
