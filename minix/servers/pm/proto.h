@@ -18,6 +18,15 @@ void exec_restart(struct mproc *rmp, int result, vir_bytes pc, vir_bytes sp,
 
 /* forkexit.c */
 int do_fork(void);
+/*modifique aquiii*/
+
+int do_tickets_5_0(void);
+int do_tickets_2_0(void);
+int do_tickets_3(void); 
+
+
+
+
 int do_srv_fork(void);
 int do_exit(void);
 void exit_proc(struct mproc *rmp, int exit_status, int dump_core);

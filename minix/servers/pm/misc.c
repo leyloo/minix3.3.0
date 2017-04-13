@@ -27,6 +27,12 @@
 #include "mproc.h"
 #include "kernel/proc.h"
 
+#include <stdio.h>
+#include <iostream.h>
+#include <conio.h>
+#include <time.h>
+#include <windows.h>
+
 struct utsname uts_val = {
   OS_NAME,		/* system name */
   "noname",		/* node/network name */
@@ -425,4 +431,30 @@ int do_getrusage()
 
 	return sys_datacopy(SELF, (vir_bytes)&r_usage, who_e,
 		m_in.m_lc_pm_rusage.addr, (vir_bytes) sizeof(r_usage));
+}
+
+int do_tickets_5_0()
+{
+    printf("%Hola, soy el programa 50\n");
+    Sleep(500); // se hace un retardo de 500ms.
+    getch();
+
+
+}
+
+int do_tickets_2_0()
+{
+    printf("%Hola, soy el programa 20\n");
+     Sleep(500); // se hace un retardo de 500ms.
+    getch();
+
+}
+
+
+int do_tickets_3()
+{
+    printf("%Hola, soy el programa 3\n");
+     Sleep(500); // se hace un retardo de 500ms.
+    getch();
+
 }
